@@ -1,4 +1,4 @@
-const API_KEY = "4238b6088b28bd7b216e5c6759811817"
+const API_KEY = "81274b6b41cb15dc0dd390c01fc36c70"
 
 //calls the fetchWeatherAPI function and clears the search input
 function search(){
