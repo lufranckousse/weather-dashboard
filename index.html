@@ -1,69 +1,139 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>Weather App Project JavaScript | CodingNepal</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/assets/css/script.js" defer></script>
-  </head>
-  <body>
-    <h1>Weather Dashboard</h1>
-    <div class="container">
-      <div class="weather-input">
-        <h3>Enter a City Name</h3>
-        <input class="city-input" type="text" placeholder="E.g., New York, London, Tokyo">
-        <button class="search-btn">Search</button>
-        <div class="separator"></div>
-        <button class="location-btn">Use Current Location</button>
-      </div>
-      <div class="weather-data">
-        <div class="current-weather">
-          <div class="details">
-            <h2>_______ ( ______ )</h2>
-            <h6>Temperature: __°C</h6>
-            <h6>Wind: __ M/S</h6>
-            <h6>Humidity: __%</h6>
-          </div>
-        </div>
-        <div class="days-forecast">
-          <h2>5-Day Forecast</h2>
-          <ul class="weather-cards">
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <div class="jumbotron page-top text-center">
+        <h3 id="header" class="display-4">Weather Dashboard</h3>
     </div>
-    
-  </body>
+    <div id="main" class="row vh-100">
+        <div class="col-3">
+            <div class="row m-2">
+                <div id="searchCard" class="input-group mb-3">
+                    <h3 class="w-100">Search for a City:</h3>
+                    <input name="search" type="text" class="form-control" placeholder="City"
+                        aria-label="Search for a city" aria-describedby="button-addon2">
+                </div>
+                <div><button id="searchBtn" type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Search
+                </button></div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Refine Search</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="top-hits" class="modal-body">
+                    
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Select</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+<!-- Past searches -->
+            <hr class="m-2">
+            <div id="searchResults" class="row">
+
+            </div>
+        </div>
+        <div class="col-9 left">
+            <div class="row m-2 justify-content-center">
+<!-- Current Date Weather -->
+                <table id="weatherTable" class="table bg-light table-borderless shadow rounded bg-body-tertiary border border-0 today">
+                    <thead>
+                        <th scope="col"><h3 class="lh-lg" id="CityDate"></h3></th>
+                    </thead>
+                    <tbody> 
+                        <tr>
+                            <td id="temp"></td>
+                        </tr>
+                        <tr>
+                            <td id="wind"></td>
+                        </tr>
+                        <tr>
+                            <td id="humidity"></td>
+                        </tr>
+                    </tbody>
+                </table>
+<!-- 5 day forcast -->
+            <div id="fiveDay" class="row container justify-content-center">
+                <div class="row  w-100">
+                    <h4>5-Day Forcast:</h4>
+                    <!-- day 1 -->
+                    <div class="col w-100">
+                        <div id="day1" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
+                            <div class="card-header date"></div>
+                            <div class="card-body weatherInfo">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- day 2 -->
+                    <div class="col w-100">
+                        <div id="day2" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
+                            <div class="card-header date"></div>
+                            <div class="card-body weatherInfo">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- day 3 -->
+                    <div class="col">
+                        <div id="day3" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
+                            <div class="card-header          date"></div>
+                            <div class="card-body weatherInfo">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- day 4 -->
+                    <div class="col">
+                        <div id="day4" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
+                            <div class="card-header date"></div>
+                            <div class="card-body weatherInfo">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- day 5 -->
+                    <div class="col">
+                        <div id="day5" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
+                            <div class="card-header date"></div>
+                            <div class="card-body weatherInfo">
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="/assets/css/script.js"></script>
+</body>
+
 </html>
