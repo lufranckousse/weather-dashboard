@@ -1,9 +1,9 @@
 # weather-dashboard
 
 
-## Link of deployed application https://lufranckousse.github.io/work-day-scheduler/
+## Link of deployed application https://lufranckousse.github.io/weather-dashboard/
 
-## Github link  https://github.com/lufranckousse/work-day-scheduler.git
+## Github link https://github.com/lufranckousse/weather-dashboard
 
 
 ## Description
